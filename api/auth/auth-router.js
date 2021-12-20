@@ -17,7 +17,7 @@ router.post('/register', validateRegister, (req, res, next) => {
     
     User.register(user)
         .then(newUser => {
-            res.status(201).json(newUser)
+            res.status(201).json({ message: `You have successfully created a new account with username '${newUser.username}'`})
         })
         .catch(next)
 })
@@ -27,7 +27,11 @@ router.post('/login', validateLogin, (req, res, next) => {
     const { password } = req.body
     if (bcrypt.compareSync(password, req.user.password)) {
         const token = tokenBuilder(req.user)
-        res.status(200).json(token)
+        res.status(200).json({
+            message: `Welcome back, ${req.user.username}`,
+            token,
+            user_id: req.user.user_id
+        })
     } else {
         next({ status: 401, message: 'invalid credentials' })
     }

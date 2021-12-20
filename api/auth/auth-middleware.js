@@ -1,4 +1,3 @@
-const db = require("../../api/data/db-config")
 const User = require('../users/users-model')
 
 const validateRegister = async (req, res, next) => {
