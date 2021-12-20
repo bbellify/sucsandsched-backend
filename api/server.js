@@ -3,7 +3,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 const db = require('./data/db-config')
 
-function getAllUsers() { return db('users') }
+const authRouter = require('./auth/auth-router')
 
 async function insertUser(user) {
   // WITH POSTGRES WE CAN PASS A "RETURNING ARRAY" AS 2ND ARGUMENT TO knex.insert/update
@@ -18,9 +18,11 @@ server.use(express.json())
 server.use(helmet())
 server.use(cors())
 
-server.get('/api/users', async (req, res) => {
-  res.json(await getAllUsers())
-})
+server.use('/api/auth', authRouter)
+
+// server.get('/api/users', async (req, res) => {
+//   res.json(await getAllUsers())
+// })
 
 server.post('/api/users', async (req, res) => {
   res.status(201).json(await insertUser(req.body))
