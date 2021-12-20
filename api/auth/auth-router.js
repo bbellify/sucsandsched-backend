@@ -1,13 +1,21 @@
 const bcrypt = require('bcryptjs')
-// const { tokenBuilder } = require('./auth-helpers')
+const { tokenBuilder } = require('./auth-helpers')
 const router = require('express').Router()
 
+
 const User = require('../users/users-model')
-const { validateRegister } = require('./auth-middleware')
+const { validateRegister, validateLogin } = require('./auth-middleware')
+
+// would be nice to hide this in config file.. 
+// const { BCRYPT_ROUNDS } = require('../config')
 
 
 router.post('/register', validateRegister, (req, res, next) => {
-    User.register(req.body)
+    let user = req.body
+    const hash = bcrypt.hashSync(user.password, 8)
+    user.password = hash
+    
+    User.register(user)
         .then(newUser => {
             res.status(201).json(newUser)
         })
@@ -15,8 +23,14 @@ router.post('/register', validateRegister, (req, res, next) => {
 })
 
 
-router.post('/login', (req, res, next) => {
-
+router.post('/login', validateLogin, (req, res, next) => {
+    const { password } = req.body
+    if (bcrypt.compareSync(password, req.user.password)) {
+        const token = tokenBuilder(req.user)
+        res.status(200).json(token)
+    } else {
+        next({ status: 401, message: 'invalid credentials' })
+    }
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
