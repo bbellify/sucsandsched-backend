@@ -26,7 +26,7 @@ server.post('/api/users', async (req, res) => {
   res.status(201).json(await insertUser(req.body))
 })
 
-server.get('/', (res, res) => {
+server.get('/', (req, res) => {
   res.json({ api: 'up' })
 })
 
