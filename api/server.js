@@ -26,4 +26,8 @@ server.post('/api/users', async (req, res) => {
   res.status(201).json(await insertUser(req.body))
 })
 
+server.get('/', (res, res) => {
+  res.json({ api: 'up' })
+})
+
 module.exports = server
