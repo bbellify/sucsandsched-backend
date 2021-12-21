@@ -26,6 +26,11 @@ router.put('/:id', (req, res, next) => {
   res.json({ update: 'being built' })
 })
 
+// adds item to potluck
+router.post(':id/items', (req, res, next) => {
+  res.json({ item_list: 'adds an item to a potluck' })
+})
+
 // get potluck guests by id
 router.get(':id/guests', (req, res, next) => {
   res.json({ guest_list: 'list being built' })
@@ -36,10 +41,6 @@ router.get(':id/items', (req, res, next) => {
   res.json( { item_list: 'being built'})
 })
 
-// adds item to potluck
-router.post(':id/items', (req, res, next) => {
-  res.json({ item_list: 'adds an item to a potluck' })
-})
 
 // need an endpoint for adding a guest (or self) to a potluck
 

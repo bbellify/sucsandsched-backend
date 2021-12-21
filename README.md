@@ -68,3 +68,135 @@ _What you receive:_
   "user_id": 3
 }
 ```
+
+
+## <p align="center">POTLUCK INFO</p>
+
+
+### [GET] /api/potlucks
+
+- Get all potlucks
+
+### [POST] /api/potlucks
+
+- Create a new potluck
+  - 
+  - 
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+
+### [GET] /api/potlucks/:potluck_id
+
+- Get a potluck by id
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+### [PUT] /api/potlucks/:potluck_id
+
+- Edit a potluck by id
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+### [POST] /api/potlucks/:potluck_id/items
+
+- Adds item to a potluck
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+
+### [GET] /api/potlucks/:potluck_id/guests
+
+- Get guest list for a potluck
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+### [GET] /api/potlucks/:potluck_id/items
+
+- Get food list for a potluck
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
