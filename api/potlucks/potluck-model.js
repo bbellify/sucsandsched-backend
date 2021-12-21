@@ -31,6 +31,23 @@ async function addGuest(potluck) {
 
 }
 
+function getItem(id) {
+    return db('items as i')
+        .join('potluck_items as pi', 'pi.item_id', 'i.item_id')
+        .select('i.*', 'pi.confirmed', 'pi.user_bringing')
+        .where('i.item_id', id)
+}
+
+async function addItem(item, potluck) {
+    const [newItem] = await db('items').insert(item, ['items.*'])
+    
+    const itemToAdd = { 
+        item_id: newItem.item_id,
+        potluck_id: potluck,
+    }
+    await db('potluck_items as pi').insert(itemToAdd)
+    return getItem(newItem.item_id)
+}
 
 
 
@@ -40,5 +57,6 @@ module.exports = {
     create,
     editPotluck,
     addGuest,
+    addItem
 
 }

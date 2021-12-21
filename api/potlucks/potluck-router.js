@@ -36,17 +36,21 @@ router.put('/:id', (req, res, next) => {
 })
 
 // adds item to potluck
-router.post(':id/items', (req, res, next) => {
-  res.json({ item_list: 'adds an item to a potluck' })
+router.post('/:id/items', (req, res, next) => {
+  Potluck.addItem(req.body, req.params.id)
+    .then(([added]) => {
+      res.status(201).json(added)
+    })
+    .catch(next)
 })
 
 // get potluck guests by id
-router.get(':id/guests', (req, res, next) => {
+router.get('/:id/guests', (req, res, next) => {
   res.json({ guest_list: 'list being built' })
 })
 
 // get food list for potluck by id
-router.get(':id/items', (req, res, next) => {
+router.get('/:id/items', (req, res, next) => {
   res.json( { item_list: 'being built'})
 })
 

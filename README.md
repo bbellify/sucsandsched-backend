@@ -76,7 +76,7 @@ _What you receive:_
 ### [GET] /api/potlucks
 
 - Get all potlucks
-  - Returns an array of all potlucks with their properties. Organizer/username are the same person, returns username attribute for convenience
+  - Returns an array of all potlucks with their properties. Organizer/username are the same person, returns username property for convenience
 
 _What you receive:_
 
@@ -183,12 +183,14 @@ _What you receive:_
 ### [POST] /api/potlucks/:potluck_id/items
 
 - Adds item to a potluck
+  - requires the field item_name as a string
+  - returns the item added, plus the confirmed and user_bringing properties
 
 _What you send:_
 
 ```json
 {
-  
+  "item_name": "salad"
 }
 ```
 
@@ -196,7 +198,10 @@ _What you receive:_
 
 ```json
 {
-  
+  "item_id": 14,
+  "item_name": "salad",
+  "confirmed": false,
+  "user_bringing": null
 }
 ```
 
