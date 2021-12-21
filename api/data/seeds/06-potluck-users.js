@@ -7,7 +7,8 @@ exports.seed = async function(knex) {
       },
       {
         potluck_id: 1,
-        user_id: 2
+        user_id: 2,
+        confirmed: true
       }
     ]);
   };

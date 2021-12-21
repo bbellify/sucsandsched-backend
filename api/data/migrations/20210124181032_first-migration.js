@@ -64,6 +64,8 @@ exports.up = async (knex) => {
         .inTable('users')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
+      table.boolean('confirmed')
+        .defaultTo(false)
     })
 
 }
