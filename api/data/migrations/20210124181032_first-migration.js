@@ -7,7 +7,7 @@ exports.up = async (knex) => {
     })
     .createTable('potlucks', table => {
       table.increments('potluck_id')
-      table.string('potluck_name')
+      table.string('potluck_name').notNullable()
       table.string('potluck_description')
       table.string('date').notNullable()
       table.string('time').notNullable()

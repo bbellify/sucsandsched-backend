@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const Potluck = require('./potluck-model')
 
+const { validateNewPotluck } = require('./potluck-middleware')
 
 router.get('/', (req, res, next) => {
     Potluck.getPotlucks()
@@ -12,13 +13,21 @@ router.get('/', (req, res, next) => {
 })
 
 //create new potluck
-router.post('/', (req, res, next) => {
-  res.json({ post: 'being built' })
+router.post('/', validateNewPotluck, (req, res, next) => {
+  Potluck.create(req.body)
+    .then(([newP]) => {
+      res.status(201).json(newP)
+    })
+    .catch(next)
 })
 
 //get potluck by id
 router.get('/:id', (req, res, next) => {
-  res.json({ potluck: 'info coming' })
+  Potluck.getPotluckById(req.params.id)
+    .then(p => {
+      res.json(p)
+    })
+    .catch(next)
 })
 
 //update potluck by id
