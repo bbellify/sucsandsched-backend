@@ -76,18 +76,53 @@ _What you receive:_
 ### [GET] /api/potlucks
 
 - Get all potlucks
+  - Returns an array of all potlucks with their properties. Organizer/username are the same person, returns username attribute for convenience
+
+_What you receive:_
+
+```json
+[
+  {
+      "potluck_id": 2,
+      "potluck_name": "a day out",
+      "potluck_description": null,
+      "date": "Jan 1",
+      "time": "10 pm",
+      "location": "the park",
+      "organizer": 1,
+      "username": "userone"
+  },
+  {
+      "potluck_id": 1,
+      "potluck_name": "Grandma's 50th!",
+      "potluck_description": "A lovely day in the park",
+      "date": "June 1, 2022",
+      "time": "1:00PM",
+      "location": "Laurelhurst Park",
+      "organizer": 1,
+      "username": "userone"
+  }
+]
+```
+
 
 ### [POST] /api/potlucks
 
 - Create a new potluck
-  - 
-  - 
+  - requires the fields potluck_name, date, time, and location all as strings
+  - requires an organizer as an integer (this should match the user_id of the logged in user, let me know if this causes trouble)
+  - can optionally provide a string for potluck_description field, but not required (see return object below)
+  - returns the new potluck object
 
 _What you send:_
 
 ```json
 {
-  
+  "potluck_name": "a day out",
+  "date": "Jan 1",
+  "time": "10 pm",
+  "location": "the park",
+  "organizer": 1
 }
 ```
 
@@ -95,7 +130,13 @@ _What you receive:_
 
 ```json
 {
-  
+  "potluck_id": 2,
+  "potluck_name": "a day out",
+  "potluck_description": null,
+  "date": "Jan 1",
+  "time": "10 pm",
+  "location": "the park",
+  "organizer": 1
 }
 ```
 
@@ -104,19 +145,18 @@ _What you receive:_
 
 - Get a potluck by id
 
-_What you send:_
-
-```json
-{
-  
-}
-```
-
 _What you receive:_
 
 ```json
 {
-  
+  "potluck_id": 1,
+  "potluck_name": "Grandma's 50th!",
+  "potluck_description": "A lovely day in the park",
+  "date": "June 1, 2022",
+  "time": "1:00PM",
+  "location": "Laurelhurst Park",
+  "organizer": 1,
+  "username": "userone"
 }
 ```
 
