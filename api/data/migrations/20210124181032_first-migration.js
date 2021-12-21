@@ -40,6 +40,13 @@ exports.up = async (knex) => {
         .inTable('potlucks')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
+      table.boolean('confirmed').defaultTo(false)
+      table.integer('user_bringing')
+        .unsigned()
+        .references('user_id')
+        .inTable('users')
+        .onUpdate('RESTRICT')
+        .onDelete('RESTRICT')
     })
     .createTable('potluck_users', table => {
       table.increments('potluck_user_id')
