@@ -56,7 +56,12 @@ function getItems(potluck) {
         .where('pi.potluck_id', potluck)
 }
 
-
+function getGuests(potluck) {
+    return db('potluck_users as pu')
+        .join('users as u', 'pu.user_id', 'u.user_id')
+        .where('pu.potluck_id', potluck)
+        .select('u.username', 'pu.confirmed')
+}
 
 module.exports = {
     getPotlucks,
@@ -65,6 +70,7 @@ module.exports = {
     editPotluck,
     addGuest,
     addItem,
-    getItems
+    getItems,
+    getGuests
 
 }

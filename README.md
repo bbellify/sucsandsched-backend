@@ -210,21 +210,22 @@ _What you receive:_
 ### [GET] /api/potlucks/:potluck_id/guests
 
 - Get guest list for a potluck
-
-_What you send:_
-
-```json
-{
-  
-}
-```
+  - responds with an array of all users invited to the potluck indicated in :potluck_id param in request
+  - guests that have confirmed will have confirmed property true
 
 _What you receive:_
 
 ```json
-{
-  
-}
+[
+    {
+        "username": "userone",
+        "confirmed": false
+    },
+    {
+        "username": "usertwo",
+        "confirmed": true
+    }
+]
 ```
 
 ### [GET] /api/potlucks/:potluck_id/items
