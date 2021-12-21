@@ -62,8 +62,17 @@ router.get('/:id/items', (req, res, next) => {
     .catch(next)
 })
 
-
-// need an endpoint for adding a guest (or self) to a potluck
+// allows a user to confirm as guest
+router.put('/:id/guests', (req, res, next) => {
+  Potluck.confirm(req.headers.user_id, req.params.id)
+    .then(conf => {
+      if (conf) {
+        res.json({ message: 'You have successfully RSVPd!'})
+      } else {
+        next({ status: 400, message: 'something went wrong with rsvp' })
+    }})
+    .catch(next)
+})
 
 
 router.use((err, req, res, next) => { // eslint-disable-line

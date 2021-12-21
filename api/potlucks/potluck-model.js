@@ -52,7 +52,7 @@ async function addItem(item, potluck) {
 function getItems(potluck) {
     return db('items as i')
         .join('potluck_items as pi', 'pi.item_id', 'i.item_id')
-        .select('i.*', 'pi.confirmed', 'pi.user_bringing')
+        .select('i.item_name', 'pi.confirmed', 'pi.user_bringing')
         .where('pi.potluck_id', potluck)
 }
 
@@ -63,6 +63,15 @@ function getGuests(potluck) {
         .select('u.username', 'pu.confirmed')
 }
 
+async function confirm(user, potluck) {
+    return await db('potluck_users as pu')
+        .update({
+            confirmed: true
+        })
+        .where('pu.potluck_id', potluck)
+        .where('pu.user_id', user)
+}
+
 module.exports = {
     getPotlucks,
     getPotluckById,
@@ -71,6 +80,7 @@ module.exports = {
     addGuest,
     addItem,
     getItems,
-    getGuests
+    getGuests,
+    confirm
 
 }

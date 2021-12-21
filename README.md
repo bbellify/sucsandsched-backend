@@ -252,3 +252,18 @@ _What you receive:_
   }
 ]
 ```
+
+### [PUT] /api/potlucks/:potluck_id/guests
+
+- Allows a user to set their status to confirmed for a potluck guest list
+  - requires a user_id in the request headers - perhaps set all your axiosWithAuth to include on successful login?
+  - confirms for the potluck indicated in by :potluck_id param in request params
+  - returns simple success message
+
+_What you receive:_
+
+```json
+{
+  "message": "You have successfully RSVPd!"
+}
+```
