@@ -183,6 +183,7 @@ _What you receive:_
 ### [POST] /api/potlucks/:potluck_id/items
 
 - Adds item to a potluck
+  - add an item to the potluck identified in the :potluck_id param in request
   - requires the field item_name as a string
   - returns the item added, plus the confirmed and user_bringing properties
 
@@ -229,19 +230,24 @@ _What you receive:_
 ### [GET] /api/potlucks/:potluck_id/items
 
 - Get food list for a potluck
-
-_What you send:_
-
-```json
-{
-  
-}
-```
+  - returns an array of all items attributed to a certain potluck
+  - potluck is determined by the number in the :potluck_id param in request
 
 _What you receive:_
 
 ```json
-{
-  
-}
+[
+  {
+      "item_id": 1,
+      "item_name": "potato salad",
+      "confirmed": false,
+      "user_bringing": null
+  },
+  {
+      "item_id": 2,
+      "item_name": "cherry pie",
+      "confirmed": false,
+      "user_bringing": null
+  }
+]
 ```

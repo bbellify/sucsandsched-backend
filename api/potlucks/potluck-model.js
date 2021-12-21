@@ -49,6 +49,13 @@ async function addItem(item, potluck) {
     return getItem(newItem.item_id)
 }
 
+function getItems(potluck) {
+    return db('items as i')
+        .join('potluck_items as pi', 'pi.item_id', 'i.item_id')
+        .select('i.*', 'pi.confirmed', 'pi.user_bringing')
+        .where('pi.potluck_id', potluck)
+}
+
 
 
 module.exports = {
@@ -57,6 +64,7 @@ module.exports = {
     create,
     editPotluck,
     addGuest,
-    addItem
+    addItem,
+    getItems
 
 }

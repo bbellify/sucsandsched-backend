@@ -51,7 +51,11 @@ router.get('/:id/guests', (req, res, next) => {
 
 // get food list for potluck by id
 router.get('/:id/items', (req, res, next) => {
-  res.json( { item_list: 'being built'})
+  Potluck.getItems(req.params.id)
+    .then(items => {
+      res.json(items)
+    })
+    .catch(next)
 })
 
 
