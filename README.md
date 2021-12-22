@@ -163,12 +163,16 @@ _What you receive:_
 ### [PUT] /api/potlucks/:potluck_id
 
 - Edit a potluck by id
+  - updates the potluck indicated by the id in the request
+  - requires at least one of the following properties in the request: time, date, location
+  - returns the updated potluck object
 
 _What you send:_
 
 ```json
 {
-  
+  "location": "Peter's house",
+  "time": "11:30 pm"
 }
 ```
 
@@ -176,7 +180,14 @@ _What you receive:_
 
 ```json
 {
-  
+    "potluck_id": 1,
+    "potluck_name": "Grandma's 50th!",
+    "potluck_description": "A lovely day in the park",
+    "date": "June 1, 2022",
+    "time": "11:30 pm",
+    "location": "Pete's house",
+    "organizer": 1,
+    "username": "userone"
 }
 ```
 

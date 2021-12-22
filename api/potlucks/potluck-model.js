@@ -1,7 +1,6 @@
 const db = require('../data/db-config')
 
 function getPotlucks() {
-    
     return db('potlucks as p')
         .join('users as u', 'p.organizer', 'u.user_id')
         // another .join() for getting guests, items?
@@ -11,11 +10,11 @@ function getPotlucks() {
 //on put for a editing a potluck, use the jwtdecoded object on the req
 function getPotluckById(id) {
     return db('potlucks as p')
-    .join('users as u', 'p.organizer', 'u.user_id')
-    // another .join() for getting guests, items?
-    .select('p.*', 'u.username')
-    .where('potluck_id', id)
-    .first()
+        .join('users as u', 'p.organizer', 'u.user_id')
+        // another .join() for getting guests, items?
+        .select('p.*', 'u.username')
+        .where('potluck_id', id)
+        .first()
 }
 
 async function create(potluck) {
@@ -23,8 +22,28 @@ async function create(potluck) {
         .insert(potluck, ['p.*'])
 }
 
-async function editPotluck(potluck) {
-
+async function editPotluck(potluck, edits) {
+ 
+    if (edits.date) {
+         await db('potlucks as p')
+            .update({
+                date: edits.date
+            })
+        .where('p.potluck_id', potluck)
+    } else if (edits.time) {
+        await db('potlucks as p')
+            .update({
+                time: edits.time
+            })
+        .where('p.potluck_id', potluck)
+    } else if (edits.location) {
+        await db('potlucks as p')
+        .update({
+            location: edits.location
+        })
+    .where('p.potluck_id', potluck)
+    }
+    return getPotluckById(potluck)
 }
 
 async function addGuest(potluck) {

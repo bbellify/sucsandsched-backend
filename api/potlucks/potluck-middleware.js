@@ -18,8 +18,16 @@ function validateNewPotluck(req, res, next) {
     }
 }
 
-
+function validatePotluckUpdate(req, res, next) {
+    const { date, time, location } = req.body
+    if (!date && !time && !location) {
+        next({ status: 400, message: 'organizer can update date, time, and location fields '})
+    } else {
+        next()
+    }
+}
 
 module.exports = {
-    validateNewPotluck
+    validateNewPotluck,
+    validatePotluckUpdate
 }

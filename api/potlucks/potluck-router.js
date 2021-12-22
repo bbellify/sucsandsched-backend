@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const Potluck = require('./potluck-model')
 
-const { validateNewPotluck } = require('./potluck-middleware')
+const { validateNewPotluck, validatePotluckUpdate } = require('./potluck-middleware')
 
 router.get('/', (req, res, next) => {
     Potluck.getPotlucks()
@@ -31,8 +31,14 @@ router.get('/:id', (req, res, next) => {
 })
 
 //update potluck by id
-router.put('/:id', (req, res, next) => {
-  res.json({ update: 'being built' })
+router.put('/:id', validatePotluckUpdate, (req, res, next) => {
+  Potluck.editPotluck(req.params.id, req.body)
+    .then(edited => {
+      res.json(edited)
+    })
+    .catch(next)
+  
+  // res.json({ update: 'being built' })
 })
 
 // adds item to potluck
@@ -73,7 +79,6 @@ router.put('/:id/guests', (req, res, next) => {
     }})
     .catch(next)
 })
-
 
 router.use((err, req, res, next) => { // eslint-disable-line
     res.status(err.status || 500).json({
