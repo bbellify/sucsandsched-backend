@@ -110,7 +110,6 @@ _What you receive:_
 
 - Create a new potluck
   - requires the fields potluck_name, date, time, and location all as strings
-  - requires an organizer as an integer (this should match the user_id of the logged in user, let me know if this causes trouble)
   - can optionally provide a string for potluck_description field, but not required (see return object below)
   - returns the new potluck object
 
@@ -121,8 +120,7 @@ _What you send:_
   "potluck_name": "a day out",
   "date": "Jan 1",
   "time": "10 pm",
-  "location": "the park",
-  "organizer": 1
+  "location": "the park"
 }
 ```
 

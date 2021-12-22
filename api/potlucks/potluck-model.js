@@ -17,9 +17,12 @@ function getPotluckById(id) {
         .first()
 }
 
-async function create(potluck) {
+
+// add public/private boolean
+async function create(id, potluck) {
+    const newPotluck = { ...potluck, organizer: id}
     return await db('potlucks as p')
-        .insert(potluck, ['p.*'])
+        .insert(newPotluck, ['p.*'])
 }
 
 async function editPotluck(potluck, edits) {

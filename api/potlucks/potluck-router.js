@@ -14,9 +14,9 @@ router.get('/', (req, res, next) => {
 
 //create new potluck
 router.post('/', validateNewPotluck, (req, res, next) => {
-  Potluck.create(req.body)
+  Potluck.create(req.headers.user_id, req.body)
     .then(([newP]) => {
-      res.status(201).json(newP)
+      res.status(201).json({newP, message: 'test test'})
     })
     .catch(next)
 })
