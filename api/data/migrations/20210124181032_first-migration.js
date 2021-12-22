@@ -19,6 +19,9 @@ exports.up = async (knex) => {
         .inTable('users')
         .onUpdate('RESTRICT')
         .onDelete('RESTRICT')
+      table.boolean('public')
+        .defaultTo(false)
+        .notNullable()
     })
     .createTable('items', table => {
       table.increments('item_id')

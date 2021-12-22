@@ -17,9 +17,9 @@ require('dotenv').config()
 */
 const pg = require('pg') //eslint-disable-line
 
-// if (process.env.DATABASE_URL) {
-//   pg.defaults.ssl = { rejectUnauthorized: false }
-// }
+if (process.env.DATABASE_URL) {
+  pg.defaults.ssl = { rejectUnauthorized: false }
+}
 
 const sharedConfig = {
   client: 'pg',

@@ -22,8 +22,8 @@
 ### [POST] /api/auth/register
 
 - Register a new user
-  - _username required (must be a string | unique)_
-  - _password required (must be a string)_
+  - username required (must be a string | unique)
+  - password required (must be a string)
 
 _What you send:_
 
@@ -45,10 +45,8 @@ _What you receive:_
 ### [POST] /api/auth/login
 
 - Login
-  - _username and password required_
-  - _returns the following:_
-    - _message: { "Welcome back, iamauser" }_
-    - _token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImlhbWF1c2VyIiwiaWF0IjoxNjQwMDQzMzg1LCJleHAiOjE2NDAxMjk3ODV9.0-ltuOZcQAaaqXOB8JCXDsiAUn4zAMDV9v5MG9DGRKI"_
+  - username and password required
+  - returns user object with with welcome message and token
 
 _What you send:_
 
