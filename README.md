@@ -239,6 +239,40 @@ _What you receive:_
 ]
 ```
 
+### [POST] /api/potlucks/:potluck_id/guests
+
+- Adds a guest by username to a potluck guest list
+  - adds guest to potluck indicated in potluck_id in request params
+  - requires a username property
+  - returns the new guest list for the potluck
+
+_What you send:_
+
+```json
+{
+  "username": "Cheyenne"
+}
+```
+
+_What you receive:_
+
+```json
+[
+  {
+        "username": "userone",
+        "confirmed": false
+    },
+    {
+        "username": "usertwo",
+        "confirmed": true
+    },
+    {
+        "username": "Cheyenne",
+        "confirmed": false
+    }
+]
+```
+
 ### [GET] /api/potlucks/:potluck_id/items
 
 - Get food list for a potluck

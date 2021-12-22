@@ -1,5 +1,3 @@
-const db = require('../data/db-config')
-
 function validateNewPotluck(req, res, next) {
     const { potluck_name, date, time, location, organizer } = req.body
 

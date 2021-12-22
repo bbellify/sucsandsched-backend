@@ -46,8 +46,22 @@ async function editPotluck(potluck, edits) {
     return getPotluckById(potluck)
 }
 
-async function addGuest(potluck) {
+function getUserByUsername(username) {
+    return db('users as u')
+        .where('u.username', username)
+        .first()
+}
 
+async function addGuest(potluck, username) {
+    const { user_id } = await getUserByUsername(username)
+    
+    await db('potluck_users')
+        .insert({
+            potluck_id: potluck,
+            user_id: user_id
+        })
+
+    return getGuests(potluck)
 }
 
 function getItem(id) {

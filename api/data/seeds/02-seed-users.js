@@ -8,6 +8,10 @@ exports.seed = async function(knex) {
       {
         username: 'usertwo', 
         password: '$2a$08$HcTrxRkn5oBJHcUWREOVm.T5HECjKzbDD4dWQzyl.6Lw1DlKTId2W'
+      },
+      {
+        username: 'Cheyenne',
+        password: '$2a$08$XOvVrG2w8e1vW5IkPi0vfuuepnsQZi1YDkm0HpIKQEyUQeioGg3Jm'
       }
     ]);
 };

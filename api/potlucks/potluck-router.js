@@ -37,8 +37,6 @@ router.put('/:id', validatePotluckUpdate, (req, res, next) => {
       res.json(edited)
     })
     .catch(next)
-  
-  // res.json({ update: 'being built' })
 })
 
 // adds item to potluck
@@ -53,6 +51,15 @@ router.post('/:id/items', (req, res, next) => {
 // get potluck guests by id
 router.get('/:id/guests', (req, res, next) => {
   Potluck.getGuests(req.params.id)
+    .then(guests => {
+      res.json(guests)
+    })
+    .catch(next)
+})
+
+// invite user to potluck guest list
+router.post('/:id/guests', (req, res, next) => {
+  Potluck.addGuest(req.params.id, req.body.username)
     .then(guests => {
       res.json(guests)
     })
