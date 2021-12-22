@@ -106,7 +106,10 @@ async function confirm(rsvp) {
 
     const [item] =  await addItem({item_name: item_name}, potluck_id)
     
-    await db('potluck_users as pu')
+    const list = await getGuests(potluck_id)
+    
+    if (list.some(user => user.username === username )) {
+        await db('potluck_users as pu')
         .where({
             'pu.potluck_id': potluck_id,
             'pu.user_id': user_id
@@ -114,6 +117,17 @@ async function confirm(rsvp) {
         .update({
             confirmed: true
         })
+    } else {
+        await addGuest(potluck_id, username)
+        await db('potluck_users as pu')
+        .where({
+            'pu.potluck_id': potluck_id,
+            'pu.user_id': user_id
+        })
+        .update({
+            confirmed: true
+        })
+    }
 
     await db('potluck_items as pi')
         .where({
