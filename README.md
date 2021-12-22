@@ -185,7 +185,7 @@ _What you receive:_
     "potluck_description": "A lovely day in the park",
     "date": "June 1, 2022",
     "time": "11:30 pm",
-    "location": "Pete's house",
+    "location": "Peter's house",
     "organizer": 1,
     "username": "userone"
 }
