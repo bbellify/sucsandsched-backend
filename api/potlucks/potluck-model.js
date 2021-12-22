@@ -99,13 +99,33 @@ function getGuests(potluck) {
         .select('u.username', 'pu.confirmed')
 }
 
-async function confirm(user, potluck) {
-    return await db('potluck_users as pu')
+async function confirm(rsvp) {
+    const { username, potluck_id, item_name } = rsvp
+    
+    const {user_id} = await getUserByUsername(username)
+
+    const [item] =  await addItem({item_name: item_name}, potluck_id)
+    
+    await db('potluck_users as pu')
+        .where({
+            'pu.potluck_id': potluck_id,
+            'pu.user_id': user_id
+        })
         .update({
             confirmed: true
         })
-        .where('pu.potluck_id', potluck)
-        .where('pu.user_id', user)
+
+    await db('potluck_items as pi')
+        .where({
+            'pi.potluck_id': potluck_id,
+            'pi.item_id': item.item_id
+        })    
+        .update({
+                confirmed: true,
+                user_bringing: user_id
+            })
+
+    return ({username: username, item: item.item_name})
 }
 
 module.exports = {

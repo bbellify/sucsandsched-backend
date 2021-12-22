@@ -77,10 +77,10 @@ router.get('/:id/items', (req, res, next) => {
 
 // allows a user to confirm as guest
 router.put('/:id/guests', (req, res, next) => {
-  Potluck.confirm(req.headers.user_id, req.params.id)
+  Potluck.confirm(req.body)
     .then(conf => {
       if (conf) {
-        res.json({ message: 'You have successfully RSVPd!'})
+        res.json({ message: `${conf.username} RSVPd successfully and is bringing ${conf.item} `})
       } else {
         next({ status: 400, message: 'something went wrong with rsvp' })
     }})
