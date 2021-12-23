@@ -31,7 +31,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 //update potluck by id
-router.put('/:id', validatePotluckUpdate, (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   Potluck.editPotluck(req.params.id, req.body)
     .then(edited => {
       res.json(edited)

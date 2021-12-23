@@ -1,9 +1,7 @@
 function validateNewPotluck(req, res, next) {
-    const { potluck_name, date, time, location } = req.body
+    const { date, time, location } = req.body
 
-    if (!potluck_name || typeof potluck_name !== 'string') {
-        next({ status: 400, message: 'potluck_name is required, must be string' })
-    } else if (!date || typeof date !== 'string') {
+   if (!date || typeof date !== 'string') {
         next({ status: 400, message: 'date is required, must be string' })
     } else if (!time || typeof time !== 'string') {
         next({ status: 400, message: 'time is required, must be string' })
