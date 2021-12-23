@@ -193,6 +193,12 @@ _What you receive:_
 
 What do you want to receive??
 
+_What you receive:_
+
+```json 
+[]
+```
+
 ### [POST] /api/potlucks/:potluck_id/items
 
 - Adds item to a potluck
