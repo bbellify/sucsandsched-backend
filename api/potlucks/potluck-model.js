@@ -33,13 +33,13 @@ async function editPotluck(potluck, edits) {
                 date: edits.date
             })
         .where('p.potluck_id', potluck)
-    } else if (edits.time) {
+    } if (edits.time) {
         await db('potlucks as p')
             .update({
                 time: edits.time
             })
         .where('p.potluck_id', potluck)
-    } else if (edits.location) {
+    } if (edits.location) {
         await db('potlucks as p')
         .update({
             location: edits.location
