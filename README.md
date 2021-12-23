@@ -189,7 +189,7 @@ _What you receive:_
 
 ### [DELETE] /api/potlucks/:potluck_id
 
-- Deletes a potluck
+- Deletes the potluck indicated in the request params
 
 What do you want to receive??
 
