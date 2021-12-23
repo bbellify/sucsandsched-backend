@@ -39,6 +39,15 @@ router.put('/:id', validatePotluckUpdate, (req, res, next) => {
     .catch(next)
 })
 
+// delete a potluck by id
+router.delete('/:id', (req, res, next) => {
+  Potluck.remove(req.params.id)
+    .then(del => {
+      res.json(del)
+    })
+    .catch(next)
+})
+
 // adds item to potluck
 router.post('/:id/items', (req, res, next) => {
   Potluck.addItem(req.body, req.params.id)

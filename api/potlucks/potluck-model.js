@@ -49,6 +49,12 @@ async function editPotluck(potluck, edits) {
     return getPotluckById(potluck)
 }
 
+async function remove(potluck) {
+    await db('potlucks')
+        .where('potluck_id', potluck)
+        .del()
+}
+
 function getUserByUsername(username) {
     return db('users as u')
         .where('u.username', username)
@@ -151,6 +157,6 @@ module.exports = {
     addItem,
     getItems,
     getGuests,
-    confirm
-
+    confirm,
+    remove
 }

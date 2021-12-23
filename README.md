@@ -187,6 +187,12 @@ _What you receive:_
 }
 ```
 
+### [DELETE] /api/potlucks/:potluck_id
+
+- Deletes a potluck
+
+What do you want to receive??
+
 ### [POST] /api/potlucks/:potluck_id/items
 
 - Adds item to a potluck
