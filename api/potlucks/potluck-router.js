@@ -42,8 +42,8 @@ router.put('/:id', validatePotluckUpdate, (req, res, next) => {
 // delete a potluck by id
 router.delete('/:id', (req, res, next) => {
   Potluck.remove(req.params.id)
-    .then(del => {
-      res.json(del)
+    .then(del => { //eslint-disable-line
+      res.status(200).json({ message: 'potluck successfully deleted'})
     })
     .catch(next)
 })

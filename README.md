@@ -196,7 +196,9 @@ What do you want to receive??
 _What you receive:_
 
 ```json 
-[]
+{
+  "message": "potluck successfully deleted"
+}
 ```
 
 ### [POST] /api/potlucks/:potluck_id/items
