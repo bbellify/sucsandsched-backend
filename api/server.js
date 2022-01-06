@@ -3,8 +3,6 @@ const helmet = require('helmet')
 const cors = require('cors')
 
 // import routers here
-// const authRouter = require('./auth/auth-router')
-// const potluckRouter = require('./potlucks/potluck-router')
 const sucsRouter = require('./sucs/sucs-router')
 
 const server = express()
@@ -13,8 +11,6 @@ server.use(helmet())
 server.use(cors())
 
 // use routers go here
-// server.use('/api/auth', authRouter)
-// server.use('/api/potlucks', potluckRouter)
 server.use('/api/sucs', sucsRouter)
 
 // server.get('/api/users', async (req, res) => {
