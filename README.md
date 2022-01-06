@@ -1,13 +1,9 @@
-# <p align="center">PROJECT TITLE HERE</p>
+# <p align="center">Sucs and Sched Backend</p>
 
 ## <p align="center">https://your-url-here.com/</p>
 
-Add this info to readme -
-create .env with something like:
-PORT=9000
-NODE_ENV=development
-DEV_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/DATABASE_NAME
-TESTING_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/TESTING_DATABASE_NAME
+
+will need to include env variables for heroku - check potlucks app for deets
 
 - edit scripts with correct heroku app names
 
@@ -17,7 +13,7 @@ TESTING_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/TESTING_DA
 
 - References:
   - node-testing2-project
-  - water my plants backend
+  - potlucks backend
 
 
 ## <p align="center">FIRST SET OF ENDPOINTS HERE</p>
