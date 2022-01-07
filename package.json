@@ -12,6 +12,7 @@
     "rollbackh": "heroku run knex migrate:rollback -a sucsandsched",
     "databaseh": "heroku pg:psql -a sucsandsched",
     "seedh": "heroku run knex seed:run -a sucsandsched",
+    "resetdbh": "npm run rollbackh && npm run migrateh && npm run seedh",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
     "deploy": "git push heroku main"
   },
