@@ -1,20 +1,23 @@
 # <p align="center">Sucs and Sched Backend</p>
 
-## <p align="center">https://your-url-here.com/</p>
+## <p align="center">https://sucsandsched.herokuapp.com</p>
 
+### Set Up
 
-will need to include env variables for heroku - check potlucks app for deets
-
-- edit scripts with correct heroku app names
+1. Include environment variables for the following:
+  - JWT_SECRET
 
 - useful scripts:
-    - npx knex migrate:make migration-name
-    - npx knex seed:make 00-seed-name
+  - npx knex migrate:make migration-name
+  - npx knex seed:make 00-seed-name
 
 - References:
   - node-testing2-project
   - potlucks backend
 
+### If using as a template (finish this):
+
+1. edit scripts in package.json with correct heroku app names
 
 ## <p align="center">FIRST SET OF ENDPOINTS HERE</p>
 
@@ -26,7 +29,7 @@ will need to include env variables for heroku - check potlucks app for deets
 ]
 ```
 
-### [POST] 
+### [POST] /auth/register
 
 - INFO HERE
   - more info here
@@ -47,11 +50,31 @@ _What you receive:_
 }
 ```
 
+### [POST] /auth/login
+
+- INFO HERE
+  - more info here
+
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
 
 ## <p align="center">SECOND SET OF ENDPOINTS HERE</p>
 
 
-### [GET] /api/second-endpoint
+### [GET] /api/sucs
 
 - INFO HERE
   - more info here

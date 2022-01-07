@@ -32,11 +32,11 @@ router.post('/register', (req, res, next) => {
 router.post('/login', validateLogin, (req, res, next) => {
     const { password } = req.body
     if (bcrypt.compareSync(password, req.user.password)) {
-        // const token = tokenBuilder(req.user)
+        const token = tokenBuilder(req.user)
         res.status(200).json({
             message: `Welcome back, ${req.user.username}`,
-            // token,
-            user_name: req.user.user_name
+            token,
+            username: req.user.username
         })
     } else {
         next({ status: 401, message: 'invalid credentials' })
