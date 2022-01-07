@@ -1,24 +1,22 @@
 const bcrypt = require('bcryptjs')
+const { BCRYPT_ROUNDS } = require('../config')
 const { tokenBuilder } = require('./auth-helpers')
-const router = require('express').Router()
 
+const router = require('express').Router()
 
 const User = require('../users/users-model')
 
 const { validateRegister, validateLogin } = require('./auth-middleware')
 
-// would be nice to hide this in config file.. 
-// const { BCRYPT_ROUNDS } = require('../config')
-
-
-router.post('/register', (req, res, next) => {
+router.post('/register', validateRegister, (req, res, next) => {
     if (!req.body.username || !req.body.first_name || !req.body.password) {
         console.log(req.body)
         return next({ message: 'nah' })
     }
 
     let user = req.body
-    const hash = bcrypt.hashSync(user.password, 8)
+    console.log(BCRYPT_ROUNDS)
+    const hash = bcrypt.hashSync(user.password, parseInt(BCRYPT_ROUNDS))
     user.password = hash
     
     User.register(user)

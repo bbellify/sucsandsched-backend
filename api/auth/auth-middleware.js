@@ -1,9 +1,9 @@
 const User = require('../users/users-model')
 
 const validateRegister = async (req, res, next) => {
-    const { username, password } = req.body
-    if (!username || !password ) {
-        next({ status: 400, message: 'username and password required' })
+    const { username, password, first_name } = req.body
+    if (!username || !password || !first_name) {
+        next({ status: 400, message: 'username, first_name, and password all required' })
     } else {
         User.getByUsername(username)
             .then(user => {
@@ -14,7 +14,6 @@ const validateRegister = async (req, res, next) => {
             .catch(next)
     }
 }
-
 
 const validateLogin = async (req, res, next) => {
     User.getByUsername(req.body.username)

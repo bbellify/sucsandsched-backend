@@ -4,8 +4,9 @@
 
 ### Set Up
 
-1. Include environment variables for the following:
+1. Include environment variables for the following (here and heroku):
   - JWT_SECRET
+  - BCRYPT_ROUNDS
 
 - useful scripts:
   - npx knex migrate:make migration-name
@@ -18,6 +19,11 @@
 ### If using as a template (finish this):
 
 1. edit scripts in package.json with correct heroku app names
+2. made .env with the following variables:
+  - NODE_ENV=development
+  - DEV_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/DEV_DB
+  - TESTING_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/TEST_DB
+  - PORT
 
 ## <p align="center">FIRST SET OF ENDPOINTS HERE</p>
 
