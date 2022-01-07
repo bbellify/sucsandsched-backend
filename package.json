@@ -7,6 +7,7 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
+    "resetdb": "npm run rollback && npm run migrate && npm run seed",
     "migrateh": "heroku run knex migrate:latest -a sucsandsched",
     "rollbackh": "heroku run knex migrate:rollback -a sucsandsched",
     "databaseh": "heroku pg:psql -a sucsandsched",

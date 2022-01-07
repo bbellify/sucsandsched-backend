@@ -19,26 +19,34 @@ exports.up = async (knex) => {
         table.increments('race_id')
         table.string('past').defaultTo(false)
         table.string('race_name').notNullable()
-        table.string('race_date').notNullable()
         table.string('race_location').notNullable()
+        table.string('race_date').notNullable()
+        table.string('race_distance').notNullable()
         table.string('race_website').notNullable()
       })
-      .createTable('users_races', table => {
+      .createTable('user_races', table => {
         table.increments('user_races_id')
         table.integer('user_id')
-          .unSigned()
+          .unsigned()
           .notNullable()
           .references('user_id')
           .inTable('users')
           .onUpdate('RESTRICT')
           .onDelete('RESTRICT')
+        table.integer('race_id')
+          .unsigned()
+          .notNullable()
+          .references('race_id')
+          .inTable('races')
+          .onUpdate('RESTRICT')
+          .onDelete('RESTRICT')
       })
-      
-
   }
   
   exports.down = async (knex) => {
-    await knex.schema.dropTableIfExists('table2')
+    await knex.schema.dropTableIfExists('user_races')
+    await knex.schema.dropTableIfExists('races')
+    await knex.schema.dropTableIfExists('users')
     await knex.schema.dropTableIfExists('sucs')
   }
   
