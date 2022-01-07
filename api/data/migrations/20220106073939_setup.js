@@ -8,7 +8,7 @@ exports.up = async (knex) => {
       })
       .createTable('users', table => {
         table.increments('user_id')
-        table.string('username', 15).notNullable()
+        table.string('username', 15).notNullable().unique()
         table.string('first_name', 15).notNullable()
         table.string('password', 200).notNullable()
         table.boolean('does_sucs').defaultTo(false)
