@@ -16,6 +16,9 @@
   - node-testing2-project
   - potlucks backend
 
+### To-Do (after MVP):
+1. Investigate generating uuids
+
 ### If using as a template (finish this):
 
 1. edit scripts in package.json with correct heroku app names

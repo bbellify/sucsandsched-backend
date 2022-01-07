@@ -9,32 +9,24 @@ const User = require('../users/users-model')
 const { validateRegister, validateLogin } = require('./auth-middleware')
 
 router.post('/register', validateRegister, (req, res, next) => {
-    if (!req.body.username || !req.body.first_name || !req.body.password) {
-        console.log(req.body)
-        return next({ message: 'nah' })
-    }
 
-    let user = req.body
-    console.log(BCRYPT_ROUNDS)
-    const hash = bcrypt.hashSync(user.password, parseInt(BCRYPT_ROUNDS))
-    user.password = hash
-    
-    User.register(user)
-        .then(newUser => {
-            res.status(201).json({ message: `You have successfully created a new account with username '${newUser.username}'`})
+    User.register({
+        ...req.body,
+        password: bcrypt.hashSync(req.body.password, parseInt(BCRYPT_ROUNDS))
+        })
+        .then(user => {
+            res.status(201).json({ message: `You have successfully created a new account with username '${user.username}'`})
         })
         .catch(next)
 })
 
 
 router.post('/login', validateLogin, (req, res, next) => {
-    const { password } = req.body
-    if (bcrypt.compareSync(password, req.user.password)) {
+    if (bcrypt.compareSync(req.body.password, req.user.password)) {
         const token = tokenBuilder(req.user)
         res.status(200).json({
             message: `Welcome back, ${req.user.username}`,
-            token,
-            username: req.user.username
+            token
         })
     } else {
         next({ status: 401, message: 'invalid credentials' })
