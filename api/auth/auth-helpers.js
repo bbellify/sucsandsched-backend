@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { JWT_SECRET } = require('../config')
+const JWT_SECRET = require('../config')
 
 function tokenBuilder(user) {
   const payload = {
@@ -8,7 +8,7 @@ function tokenBuilder(user) {
     role: user.role,
   }
   const options = {
-    expiresIn: '1d'
+    expiresIn: '3d'
   }
   const result = jwt.sign(payload, JWT_SECRET, options)
 

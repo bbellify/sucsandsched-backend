@@ -10,7 +10,7 @@ exports.up = async (knex) => {
         table.increments('user_id')
         table.string('username', 15).notNullable()
         table.string('first_name', 15).notNullable()
-        table.string('password', 16).notNullable()
+        table.string('password', 200).notNullable()
         table.boolean('does_sucs').defaultTo(false)
         table.string('role').defaultTo('user')
 

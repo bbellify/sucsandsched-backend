@@ -4,13 +4,19 @@ const router = require('express').Router()
 
 
 const User = require('../users/users-model')
+
 const { validateRegister, validateLogin } = require('./auth-middleware')
 
 // would be nice to hide this in config file.. 
 // const { BCRYPT_ROUNDS } = require('../config')
 
 
-router.post('/register', validateRegister, (req, res, next) => {
+router.post('/register', (req, res, next) => {
+    if (!req.body.username || !req.body.first_name || !req.body.password) {
+        console.log(req.body)
+        return next({ message: 'nah' })
+    }
+
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
     user.password = hash
@@ -26,11 +32,11 @@ router.post('/register', validateRegister, (req, res, next) => {
 router.post('/login', validateLogin, (req, res, next) => {
     const { password } = req.body
     if (bcrypt.compareSync(password, req.user.password)) {
-        const token = tokenBuilder(req.user)
+        // const token = tokenBuilder(req.user)
         res.status(200).json({
             message: `Welcome back, ${req.user.username}`,
-            token,
-            user_id: req.user.user_id
+            // token,
+            user_name: req.user.user_name
         })
     } else {
         next({ status: 401, message: 'invalid credentials' })
