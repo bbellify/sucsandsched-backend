@@ -25,7 +25,7 @@ router.post('/login', validateLogin, (req, res, next) => {
     if (bcrypt.compareSync(req.body.password, req.user.password)) {
         const token = tokenBuilder(req.user)
         res.status(200).json({
-            message: `Welcome back, ${req.user.username}`,
+            username: req.user.username,
             token
         })
     } else {
@@ -33,7 +33,7 @@ router.post('/login', validateLogin, (req, res, next) => {
     }
 })
 
-router.get('/:username', restricted, (req, res, next) => {
+router.get('/:username/account', restricted, (req, res, next) => {
     res.json('workin on it')
 
     // User.getUser()
