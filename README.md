@@ -18,6 +18,8 @@
 
 ### To-Do (after MVP):
 1. Investigate generating uuids
+  - change `getByUsername` in users-model to `getById` 
+    - this will affect client side - specifically in Account component
 
 ### If using as a template (finish this):
 

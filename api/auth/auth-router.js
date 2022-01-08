@@ -20,12 +20,12 @@ router.post('/register', validateRegister, (req, res, next) => {
         .catch(next)
 })
 
-
 router.post('/login', validateLogin, (req, res, next) => {
     if (bcrypt.compareSync(req.body.password, req.user.password)) {
         const token = tokenBuilder(req.user)
         res.status(200).json({
-            message: `Welcome back, ${req.user.username}`,
+            username: req.user.username,
+            first_name: req.user.first_name,
             token
         })
     } else {
@@ -38,7 +38,7 @@ router.use((err, req, res, next) => { // eslint-disable-line
       message: err.message,
       stack: err.stack,
     })
-  })
+})
 
 
 module.exports = router

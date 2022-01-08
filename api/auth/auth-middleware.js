@@ -5,7 +5,7 @@ const validateRegister = async (req, res, next) => {
     if (!username || !password || !first_name) {
         next({ status: 400, message: 'username, first_name, and password all required' })
     } else {
-        User.getByUsername(username)
+        User.findByUsername(username)
             .then(user => {
                 if (user) {
                     next({ status: 400, message: 'username taken!'})
@@ -16,7 +16,7 @@ const validateRegister = async (req, res, next) => {
 }
 
 const validateLogin = async (req, res, next) => {
-    User.getByUsername(req.body.username)
+    User.findByUsername(req.body.username)
         .then(user => {
             if (!user) {
                 next({ status: 401, message: 'invalid credentials' })
@@ -30,5 +30,5 @@ const validateLogin = async (req, res, next) => {
 
 module.exports = {
     validateRegister,
-    validateLogin
+    validateLogin,
 }
