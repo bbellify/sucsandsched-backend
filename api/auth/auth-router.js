@@ -33,7 +33,7 @@ router.post('/login', validateLogin, (req, res, next) => {
     }
 })
 
-router.get('/:username/account', restricted, (req, res, next) => {
+router.get('/account/:username', restricted, (req, res, next) => {
     res.json('workin on it')
 
     // User.getUser()
