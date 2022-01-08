@@ -7,7 +7,7 @@ const { restricted, only } = require('./account-middleware')
 router.get('/:username', restricted, (req, res, next) => {
     console.log(req.params.username)
     User.getByUsername(req.params.username)
-        .then(user => {
+        .then(([user]) => {
             res.json(user)
         })
         .catch(next)

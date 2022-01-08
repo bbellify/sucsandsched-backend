@@ -12,7 +12,7 @@ function getByUsername(username) {
     // after log in
     return db('users')
         .where('username', username)
-        // .select('*')
+        .select('does_sucs', 'first_name', 'username')
         // .join('')
 }
 
