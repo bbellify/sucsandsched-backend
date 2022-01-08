@@ -8,9 +8,9 @@ const authRouter = require('./auth/auth-router')
 const accountRouter = require('./account/account-router')
 
 const server = express()
+server.use(express.json())
 server.use(helmet())
 server.use(cors())
-server.use(express.json())
 
 // use routers go here
 server.use('/api/sucs', sucsRouter)
