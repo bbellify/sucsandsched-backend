@@ -11,8 +11,9 @@ function findByUsername(username) {
 function getByUsername(username) {
     // after log in
     return db('users')
-        .where('username', username)    
-        .join('')
+        .where('username', username)
+        // .select('*')
+        // .join('')
 }
 
 async function register(user) {
