@@ -3,7 +3,6 @@ const router = require('express').Router()
 const Sucs = require('../sucs/sucs-model')
 
 router.get('/', (req, res, next) => {
-  console.log(req.headers)
     Sucs.getSucs()
         .then(sucs => {
             res.json(sucs)

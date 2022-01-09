@@ -18,7 +18,6 @@ server.use('/auth', authRouter)
 server.use('/api/account', accountRouter)
 
 server.get('/', (req, res) => {
-  console.log(req.headers)
   res.json({ sucs: 'engage' })
 })
 
