@@ -18,7 +18,7 @@ function getByUsername(username) {
 
 async function register(user) {
     const [newUser] = await db('users')
-        .insert(user, ['user_id', 'username', 'password'])
+        .insert(user, ['user_id', 'username', 'first_name'])
     return newUser
 }
 

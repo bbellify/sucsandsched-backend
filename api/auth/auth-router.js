@@ -15,7 +15,11 @@ router.post('/register', validateRegister, (req, res, next) => {
         password: bcrypt.hashSync(req.body.password, parseInt(BCRYPT_ROUNDS))
         })
         .then(user => {
-            res.status(201).json({ message: `You have successfully created a new account with username '${user.username}'`})
+            console.log(user)
+            res.status(201).json({ 
+                username: user.username,
+                first_name: user.first_name
+            })
         })
         .catch(next)
 })
