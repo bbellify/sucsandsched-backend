@@ -8,7 +8,7 @@ const validateRegister = async (req, res, next) => {
         User.findByUsername(username)
             .then(user => {
                 if (user) {
-                    next({ status: 400, message: 'username taken!'})
+                    next({ status: 400, message: 'username unavailable'})
                 } else next()
             })
             .catch(next)
