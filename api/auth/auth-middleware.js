@@ -9,7 +9,7 @@ const validateRegister = async (req, res, next) => {
             .then(user => {
                 if (user) {
                     next({ status: 400, message: 'username taken!'})
-                } next()
+                } else next()
             })
             .catch(next)
     }
