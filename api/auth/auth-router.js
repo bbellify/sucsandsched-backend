@@ -15,7 +15,6 @@ router.post('/register', validateRegister, (req, res, next) => {
         password: bcrypt.hashSync(req.body.password, parseInt(BCRYPT_ROUNDS))
         })
         .then(user => {
-            console.log(user)
             res.status(201).json({ 
                 username: user.username,
                 first_name: user.first_name
