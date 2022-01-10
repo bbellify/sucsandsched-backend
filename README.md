@@ -4,31 +4,33 @@
 
 ### Set Up
 
-1. Include environment variables for the following (here and heroku):
-  - JWT_SECRET
-  - BCRYPT_ROUNDS
+- Create new .env, add the following:
+  - PORT (eg PORT=9000)
+  - NODE_ENV=development - this is for db-config file (investigate how this all pipes together)
+  - DEV_DATABASE_URL=postgresql://postgres:YOUR_PGADMIN4_PASSWORD@localhost:5432/DEV_DB
+  - TESTING_DATABASE_URL=postgresql://postgres:YOUR_PGADMIN4_PASSWORD@localhost:5432/TEST_DB
+    - 'postgresql' is default pgadmin4 username
+    - YOUR_PGADMIN4_DATABASE is master password for pgAdmin4
+    - 5432 is default pgAdmin4 port - change if you changed in pgAdmin4 setup
+  - JWT_SECRET (eg JWT_SECRET=secret)
+  - BCRYPT_ROUNDS (eg BCRYPT_ROUNDS=10)
 
-- useful scripts:
+- edit scripts in package.json, swapping out HEROKU_APP_NAME with your app
+
+- Useful scripts:
   - npx knex migrate:make migration-name
   - npx knex seed:make 00-seed-name
 
-- References:
-  - node-testing2-project
-  - potlucks backend
+### Heroku Deploy:
+  - On new project, add Heroku Postgres under Resources. This will set DATABASE_URL config var in Heroku to the db it creates, used in knexfile.js.
+  - set JWT_SECRET environment variable
+  - set BCRYPT_ROUNDS environment variable
 
 ### To-Do (after MVP):
 1. Investigate generating uuids
   - change `getByUsername` in users-model to `getById` 
     - this will affect client side - specifically in Account component
 
-### If using as a template (finish this):
-
-1. edit scripts in package.json with correct heroku app names
-2. made .env with the following variables:
-  - NODE_ENV=development
-  - DEV_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/DEV_DB
-  - TESTING_DATABASE_URL=postgresql://postgres:PG_PASSWORD@localhost:5432/TEST_DB
-  - PORT
 
 ## <p align="center">FIRST SET OF ENDPOINTS HERE</p>
 
