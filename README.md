@@ -15,11 +15,17 @@
   - JWT_SECRET (eg JWT_SECRET=secret)
   - BCRYPT_ROUNDS (eg BCRYPT_ROUNDS=10)
 
-- edit scripts in package.json, swapping out HEROKU_APP_NAME with your app
+- in package.json, swap out HEROKU_APP_NAME with your app name in the following scripts:
+  ( for template, change the below seeds so they look like <"migrateh": "heroku run knex migrate:latest -a HEROKU_APP_NAME">)
+  - "migrateh"
+  - "rollbackh"
+  - "databaseh"
+  - "seedh"
 
 - Useful scripts:
   - npx knex migrate:make migration-name
   - npx knex seed:make 00-seed-name
+  - see package.json for more custom scripts
 
 ### Heroku Deploy:
   - On new project, add Heroku Postgres under Resources. This will set DATABASE_URL config var in Heroku to the db it creates, used in knexfile.js.
