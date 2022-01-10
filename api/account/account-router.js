@@ -4,8 +4,8 @@ const User = require('../users/users-model')
 
 const { restricted, only } = require('./account-middleware')
 
-router.get('/:username', restricted, (req, res, next) => {
-    User.getByUsername(req.params.username)
+router.get('/', restricted, (req, res, next) => {
+    User.getByUsername(req.decodedJwt.username)
         .then(([user]) => {
             res.json(user)
         })
