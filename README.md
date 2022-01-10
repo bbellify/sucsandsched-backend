@@ -36,7 +36,6 @@
   - change `getByUsername` in users-model to `getById` 
     - this will affect client side - specifically in Account component
 
-<br/>
 ## FIRST SET OF ENDPOINTS HERE
 
 ### User examples:
