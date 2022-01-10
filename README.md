@@ -1,6 +1,6 @@
-# <p align="center">Sucs and Sched Backend</p>
+# Sucs and Sched Backend
 
-## <p align="center">https://sucsandsched.herokuapp.com</p>
+## https://sucsandsched.herokuapp.com
 
 ### Set Up
 
@@ -15,8 +15,7 @@
   - JWT_SECRET (eg JWT_SECRET=secret)
   - BCRYPT_ROUNDS (eg BCRYPT_ROUNDS=10)
 
-- in package.json, swap out HEROKU_APP_NAME with your app name in the following scripts:
-  ( for template, change the below seeds so they look like <"migrateh": "heroku run knex migrate:latest -a HEROKU_APP_NAME">)
+- in package.json, swap out HEROKU_APP_NAME (in current version sucsandsched, swap this out in template) with name of your app
   - "migrateh"
   - "rollbackh"
   - "databaseh"
