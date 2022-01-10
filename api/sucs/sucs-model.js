@@ -7,9 +7,9 @@ function getSucs() {
 }
 
 // should this return only the users? or all?
-function getSucsRestricted() {
+function getSucsByUsername(username) {
     return db('sucs')
-    .select('*')
+    .select('sucs_id', 'situps', 'crunches', 'squats', `${username}`)
     .orderBy('sucs_id', 'asc')
 }
 
@@ -19,11 +19,11 @@ async function logSucs(username, day) {
         .where('s.sucs_id', day)
         .update(username, true, ['sucs_id', 'situps', 'crunches', 'squats', `${username}`])
 
-    return getSucsRestricted()
+    return getSucsByUsername(username)
 }
 
 module.exports = {
     getSucs,
-    getSucsRestricted,
+    getSucsByUsername,
     logSucs,
 }

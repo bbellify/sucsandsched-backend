@@ -4,24 +4,33 @@ const Sucs = require('../sucs/sucs-model')
 
 const { restricted } = require('../account/account-middleware')
 
+//could add the line below and then remove restricted middleware from all endpoints if I didn't want to keep the open endpoint for non-logged in user. maybe this can be refactored (put in auth router instead? that isn't locked) in order to clean this router up
+
+// router.use(restricted)
+// I think above line is right, would have to double check
+
 router.get('/', (req, res, next) => {
-  Sucs.getSucs()
+    Sucs.getSucs()
+        .then(sucs => {
+            res.json(sucs)
+        })
+        .catch(next)
+})
+
+router.get('/user', restricted, (req, res, next) => {
+  Sucs.getSucsByUsername(req.decodedJwt.username)
       .then(sucs => {
-          res.json(sucs)
+        res.json({
+          username: req.decodedJwt.username,
+          sucs: sucs
+        })
       })
       .catch(next)
 })
 
 router.get('/all', restricted, (req, res, next) => {
-  
-  // added this when working on sucs component, feel like I'll need here but can't remember why
-  console.log(req.decodedJwt)
-  
-  Sucs.getSucsRestricted()
-      .then(sucs => {
-          res.json(sucs)
-      })
-      .catch(next)
+  console.log('in all')
+  res.json({ message: 'all sucs'})
 })
 
 router.post('/log', restricted, (req, res, next) => {

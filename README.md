@@ -98,6 +98,8 @@ _What you receive:_
 
 ### [GET] /api/sucs
 
+The router for this set of endpoints is a bit clunkier than it needs to be because I wanted to keep an open sucs endpoint that wasn't restricted for easy access to the schedule. If that weren't the case, you could add the restricted middleware to the whole endpoint for easy locking. See sucs-router for notes.
+
 - INFO HERE
   - more info here
 
