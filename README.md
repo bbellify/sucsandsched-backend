@@ -2,6 +2,12 @@
 
 ## https://sucsandsched.herokuapp.com
 
+### To-dos for template
+- replace sucsandsched in package.json scripts with HEROKU_APP_NAME
+  - update the note on this in set up, below
+- swap out URL above
+- 
+
 ### Set Up
 
 - Create new .env, add the following:
