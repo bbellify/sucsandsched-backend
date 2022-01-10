@@ -5,6 +5,12 @@ function getSucs() {
     .select('sucs_id', 'situps', 'crunches', 'squats' )
 }
 
+function getSucsRestricted() {
+    return db('sucs')
+    .select('*')
+}
+
 module.exports = {
-    getSucs
+    getSucs,
+    getSucsRestricted
 }

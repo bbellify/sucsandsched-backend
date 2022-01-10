@@ -1,11 +1,5 @@
 exports.up = async (knex) => {
     await knex.schema
-      .createTable('sucs', table => {
-        table.increments('sucs_id')
-        table.integer('situps')
-        table.integer('crunches')
-        table.integer('squats')
-      })
       .createTable('users', table => {
         table.increments('user_id')
         table.string('username', 15).notNullable().unique()
@@ -13,7 +7,19 @@ exports.up = async (knex) => {
         table.string('password', 200).notNullable()
         table.boolean('does_sucs').defaultTo(false)
         table.string('role').defaultTo('user')
-
+      })
+      .createTable('sucs', table => {
+        table.increments('sucs_id')
+        table.integer('situps')
+        table.integer('crunches')
+        table.integer('squats')
+        // delete below - this is adding brian user to sucs tracking
+        table.integer('2')
+          .unsigned()
+          .references('user_id')
+          .inTable('users')
+          .onUpdate('RESTRICT')
+          .onDelete('RESTRICT')
       })
       .createTable('races', table => {
         table.increments('race_id')
@@ -46,7 +52,7 @@ exports.up = async (knex) => {
   exports.down = async (knex) => {
     await knex.schema.dropTableIfExists('user_races')
     await knex.schema.dropTableIfExists('races')
-    await knex.schema.dropTableIfExists('users')
     await knex.schema.dropTableIfExists('sucs')
+    await knex.schema.dropTableIfExists('users')
   }
   
