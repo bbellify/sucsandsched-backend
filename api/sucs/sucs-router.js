@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.get('/user', restricted, (req, res, next) => {
+router.get('/user', restricted,  (req, res, next) => {
   Sucs.getSucsByUsername(req.decodedJwt.username)
       .then(sucs => {
         res.json({
