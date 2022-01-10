@@ -37,9 +37,9 @@
     - this will affect client side - specifically in Account component
 
 
-## <p align="center">FIRST SET OF ENDPOINTS HERE</p>
+## FIRST SET OF ENDPOINTS HERE
 
-### <p align="center">User examples:</p>
+### User examples:
 
 ```json
 [
