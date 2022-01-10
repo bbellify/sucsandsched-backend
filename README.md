@@ -36,7 +36,7 @@
   - change `getByUsername` in users-model to `getById` 
     - this will affect client side - specifically in Account component
 
-
+<br/>
 ## FIRST SET OF ENDPOINTS HERE
 
 ### User examples:
@@ -89,8 +89,7 @@ _What you receive:_
 }
 ```
 
-## <p align="center">SECOND SET OF ENDPOINTS HERE</p>
-
+## MORE ENDPOINTS HERE
 
 ### [GET] /api/sucs
 
