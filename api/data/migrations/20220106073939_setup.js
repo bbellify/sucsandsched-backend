@@ -14,12 +14,7 @@ exports.up = async (knex) => {
         table.integer('crunches')
         table.integer('squats')
         // delete below - this is adding brian user to sucs tracking
-        table.integer('2')
-          .unsigned()
-          .references('user_id')
-          .inTable('users')
-          .onUpdate('RESTRICT')
-          .onDelete('RESTRICT')
+        table.string('brian')
       })
       .createTable('races', table => {
         table.increments('race_id')

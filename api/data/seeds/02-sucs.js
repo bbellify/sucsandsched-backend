@@ -4,7 +4,7 @@ exports.seed = async function(knex) {
     {
       situps: 10,
       crunches: 10,
-      squats: 25
+      squats: 25,
     },
     {
       situps: 20,
