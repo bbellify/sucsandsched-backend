@@ -6,7 +6,7 @@
 - replace sucsandsched in package.json scripts with HEROKU_APP_NAME
   - update the note on this in set up, below
 - swap out URL above
-- 
+- may want to consider revisiting the whole auth flow, the user/account routers, etc. might be ok, may be more of a front end project
 
 ### Set Up
 
