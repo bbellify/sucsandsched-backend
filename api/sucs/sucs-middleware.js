@@ -3,13 +3,12 @@ const Sucs = require('./sucs-model')
 
 const ifSucs = async (req, res, next) => {
   const [user] = await User.getByUsername(req.decodedJwt.username)
-  
+
   if (user.does_sucs) {
     return next()
   } else {
-    return ({
+    res.json({
       sucs: await Sucs.getSucs(),
-      username: req.decodedJwt.username
     })
   }
 }

@@ -18,8 +18,8 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-// add ifSucs middleware
 router.get('/user', restricted, ifSucs, (req, res, next) => {
+
   Sucs.getSucsByUsername(req.decodedJwt.username)
       .then(sucs => {
         res.json({
