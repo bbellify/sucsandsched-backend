@@ -3,6 +3,7 @@ const router = require('express').Router()
 const Sucs = require('../sucs/sucs-model')
 
 const { restricted } = require('../account/account-middleware')
+const { ifSucs } = require('./sucs-middleware')
 
 //could add the line below and then remove restricted middleware from all endpoints if I didn't want to keep the open endpoint for non-logged in user. maybe this can be refactored (put in auth router instead? that isn't locked) in order to clean this router up
 
@@ -17,7 +18,8 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.get('/user', restricted,  (req, res, next) => {
+// add ifSucs middleware
+router.get('/user', restricted, ifSucs, (req, res, next) => {
   Sucs.getSucsByUsername(req.decodedJwt.username)
       .then(sucs => {
         res.json({
