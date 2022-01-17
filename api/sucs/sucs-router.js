@@ -30,17 +30,15 @@ router.get('/user', restricted, ifSucs, (req, res, next) => {
       .catch(next)
 })
 
-// beginning of trying to let user toggle sucs
-// // add restricted mw
-// router.post('/user', (req, res, next) => {
-//   // swap these lines 
-//   // Sucs.toggleSucs(req.decodedJwt.username)
-//   Sucs.toggleSucs('admin')
-//     .then(resp => {
-//       console.log('in post then')
-//     })
-//     .catch(next)
-// })
+router.post('/toggle', restricted, (req, res, next) => {
+  Sucs.toggleSucs(req.decodedJwt.username)
+    .then(resp => {
+      res.json({
+        message: resp
+      })
+    })
+    .catch(next)
+})
 
 router.get('/all', restricted, (req, res, next) => {
   console.log('in all')
