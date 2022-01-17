@@ -13,6 +13,9 @@ function getSucsByUsername(username) {
     .orderBy('sucs_id', 'asc')
 }
 
+
+//should investigate txs on this function
+
 async function toggleSucs(username) {
     try {
         await db('sucs').select(`${username}`)
@@ -21,7 +24,7 @@ async function toggleSucs(username) {
         table.dropColumn(`${username}`)
         })
 
-        // insert changing does_sucs to true here
+        await db('users').update({ 'does_sucs': false }).where('username', username)
 
         return (`no longer tracking sucs for ${username}`)
 
@@ -29,6 +32,8 @@ async function toggleSucs(username) {
         await db.schema.alterTable(`sucs`, table => {
             table.string(`${username}`)
         })
+
+        await db('users').update({ 'does_sucs': true }).where('username', username)
 
         return (`now tracking sucs for ${username}`)
     }

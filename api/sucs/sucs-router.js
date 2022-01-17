@@ -31,6 +31,7 @@ router.get('/user', restricted, ifSucs, (req, res, next) => {
 })
 
 router.post('/toggle', restricted, (req, res, next) => {
+
   Sucs.toggleSucs(req.decodedJwt.username)
     .then(resp => {
       res.json({
