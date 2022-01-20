@@ -41,17 +41,17 @@ router.post('/toggle', restricted, (req, res, next) => {
     .catch(next)
 })
 
-router.get('/all', restricted, (req, res, next) => {
-  console.log('in all')
-  res.json({ message: 'all sucs'})
-})
-
 router.post('/log', restricted, (req, res, next) => {
   Sucs.logSucs(req.decodedJwt.username, req.body.day)
     .then( newSucs => {
       res.status(200).json(newSucs)
     })
     .catch(next)
+})
+
+router.get('/all', restricted, (req, res, next) => {
+  console.log('in all')
+  res.json({ message: 'all sucs'})
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line

@@ -2,10 +2,19 @@
 
 ## https://sucsandsched.herokuapp.com
 
-### To-dos for template
+## MVP
+
+- [ ] Finish required functionality to complete MVP for <a href='https://github.com/bbellify/sucsandsched-frontend'>frontend</a>
+
+### Stretch
+- [ ] Investigate generating uuids
+  - change `getByUsername` in users-model to `getById` 
+    - this will affect client side - specifically in Account component
+
+### To-dos for templatization
 - replace sucsandsched in package.json scripts with HEROKU_APP_NAME
   - update the note on this in set up, below
-- swap out URL above
+- swap out URL at top of readme
 - may want to consider revisiting the whole auth flow, the user/account routers, etc. might be ok, may be more of a front end project
 
 ### Set Up
@@ -37,25 +46,68 @@
   - set JWT_SECRET environment variable
   - set BCRYPT_ROUNDS environment variable
 
-### To-Do (after MVP):
-1. Investigate generating uuids
-  - change `getByUsername` in users-model to `getById` 
-    - this will affect client side - specifically in Account component
 
-## FIRST SET OF ENDPOINTS HERE
 
-### User examples:
+## Public Endpoints (non-restricted)
+
+### Register/Login
+
+#### [POST] /auth/register
+
+- Register a new user
+  - username required (unique)
+  - password required
+  - first_name required
+
+_What you send:_
 
 ```json
-[
-  
-]
+{
+  "username": "luvs2run",
+  "password": "randompassword",
+  "first_name": "madonna"
+}
 ```
 
-### [POST] /auth/register
+_What you receive:_
 
-- INFO HERE
-  - more info here
+```json
+{
+  "username": "luvs2run",
+  "first_name": "madonna"
+}
+```
+
+#### [POST] /auth/login
+
+- Log in with existing user
+  - username and password required
+  - returns user object with welcome message and token
+
+_What you send:_
+
+```json
+{
+  "username": "luvs2run",
+  "password": "randompassword"
+}
+```
+
+_What you receive:_
+
+```json
+{
+  "username": "luvs2run",
+  "first_name": "madonna",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImlhbWF1c2VyIiwiaWF0IjoxNjM2ODYyMDY5LCJleHAiOjE2MzY5NDg0Njl9.fhVnkCzPDA5kubS1fo3mj57AEZcon267qH7dQ5Rk7rU"
+}
+```
+
+### Sucs
+
+#### [GET] /api/sucs 
+
+- Gets sucs schedule - can be used without auth
 
 _What you send:_
 
@@ -73,10 +125,13 @@ _What you receive:_
 }
 ```
 
-### [POST] /auth/login
+## Restricted Endpoints - must be logged in user
 
-- INFO HERE
-  - more info here
+#### Account
+
+### [GET] /api/account
+
+- Gets logged in user's account information
 
 _What you send:_
 
@@ -94,14 +149,11 @@ _What you receive:_
 }
 ```
 
-## MORE ENDPOINTS HERE
+### Sucs
 
-### [GET] /api/sucs
+#### [GET] /api/sucs/user
 
-The router for this set of endpoints is a bit clunkier than it needs to be because I wanted to keep an open sucs endpoint that wasn't restricted for easy access to the schedule. If that weren't the case, you could add the restricted middleware to the whole endpoint for easy locking. See sucs-router for notes.
-
-- INFO HERE
-  - more info here
+- Gets logged in user's sucs
 
 _What you receive:_
 
@@ -113,11 +165,29 @@ _What you receive:_
 
 ```
 
+#### [POST] /api/sucs/toggle
 
-### [POST] /api/
+- Turns on/off sucs tracking for logged in user
 
-- INFO HERE
-  - more info here
+_What you send:_
+
+```json
+{
+  
+}
+```
+
+_What you receive:_
+
+```json
+{
+  
+}
+```
+
+#### [POST] /api/sucs/log
+
+- Logs today's sucs as completed for logged in user
 
 _What you send:_
 
