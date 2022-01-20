@@ -46,7 +46,7 @@
   - set JWT_SECRET environment variable
   - set BCRYPT_ROUNDS environment variable
 
-
+</br>
 
 ## Public Endpoints (non-restricted)
 
